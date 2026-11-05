@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap">
+<title>Núi Bà Đen – Bến Nhà Rồng – Vịnh Hạ Long</title>
+<style>
+:root{--bg:#5A0D12;--bg2:#430a0e;--red:#FF8A7A;--ivory:#FFF6E9;--gold:#F0C674;--gray:#E8C3BA;--serif:"Playfair Display","Times New Roman",serif;--sans:"Be Vietnam Pro","Segoe UI",Arial,sans-serif;--s:1}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#2a0508;overflow:hidden;font-family:var(--sans);color:var(--ivory)}
+#stage{position:absolute;left:50%;top:50%;width:1280px;height:720px;transform:translate(-50%,-50%) scale(var(--s));background:radial-gradient(ellipse at 50% 35%,#7C1820,#5A0D12 65%,#3E070B);overflow:hidden;cursor:pointer}
+.slide{position:absolute;inset:0;padding:48px 72px 90px;opacity:0;visibility:hidden;transform:translateX(24px);transition:opacity .45s,transform .45s,visibility .45s;display:flex;flex-direction:column}
+.slide.on{opacity:1;visibility:visible;transform:none}
+.slide.past{transform:translateX(-24px)}
+.scene,.ph{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.3}
+.ph{background-size:cover;background-position:center;opacity:.4}
+.slide:after{content:"";position:absolute;left:0;top:48px;width:8px;height:96px;background:var(--gold)}
+.slide>*{position:relative;z-index:1}.slide>.scene,.slide>.ph{position:absolute}
+.k{color:var(--gold);font-size:22px;letter-spacing:.1em;text-transform:uppercase;margin:0 0 8px;display:flex;align-items:center;gap:12px}
+.k:after{content:"";height:2px;width:56px;background:var(--red)}
+h1{font:700 48px/1.25 var(--serif);margin:0 0 20px;padding-right:190px}
+.body{flex:1;display:flex;gap:36px;align-items:center;min-height:0}
+ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:16px;flex:1}
+li{font-size:27px;line-height:1.38;padding-left:26px;position:relative}
+li:before{content:"";position:absolute;left:0;top:.6em;width:10px;height:10px;background:var(--red)}
+li b{color:var(--gold)}
+.cards{width:390px;flex:none;display:flex;flex-direction:column;gap:14px}
+.cd{background:rgba(67,10,14,.85);border-left:4px solid var(--red);padding:14px 20px;backdrop-filter:blur(3px)}
+.cd b{display:block;font:700 40px/1.2 var(--serif);color:var(--gold)}
+.cd span{font-size:22px;color:var(--ivory);line-height:1.3}
+.on li,.on .cd{animation:fup .7s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:var(--d,0s)}
+.on h1{animation:fup .7s cubic-bezier(.2,.8,.2,1) backwards}
+@keyframes fup{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+/* cover & intro */
+.slide.cover,.slide.intro{align-items:center;justify-content:center;text-align:center}
+.cover:after,.intro:after{display:none}
+.cover .scene{opacity:1}
+.cover:before,.intro:before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(transparent 25%,rgba(40,6,9,.85))}
+.cover .ph{opacity:.85}
+.cover .k{justify-content:center;font-size:26px}.cover .k:after{display:none}
+.cover h1{font-size:84px;padding:0;margin:6px 0 14px;text-shadow:0 6px 24px rgba(0,0,0,.5)}
+.cover .sub,.intro .sub{font-size:30px;color:var(--gray);text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.cover{justify-content:flex-end;padding-bottom:130px}
+.intro{justify-content:flex-end;padding-bottom:110px}
+.intro h1{font-size:54px;padding:0;margin:0 0 12px;max-width:1100px}
+.intro .scene{opacity:.18}
+.rule{width:300px;height:2px;margin:0 auto 16px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+/* 3D logo */
+#logo{position:absolute;z-index:8;right:50px;top:28px;width:150px;height:96px;perspective:900px;pointer-events:none;--dz:1.1px;transition:right 1s cubic-bezier(.2,.8,.2,1),top 1s cubic-bezier(.2,.8,.2,1),width 1s cubic-bezier(.2,.8,.2,1),height 1s cubic-bezier(.2,.8,.2,1)}
+#logo.big{right:calc(50% - 235px);top:70px;width:470px;height:300px;--dz:3.4px}
+#rot{position:absolute;inset:0;transform-style:preserve-3d;animation:sw 6s ease-in-out infinite alternate}
+#rot svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+#rot svg.b{filter:brightness(.55)}
+#logo.big #rot{filter:drop-shadow(0 18px 24px rgba(0,0,0,.45))}
+@keyframes sw{from{transform:rotateY(-40deg)}to{transform:rotateY(40deg)}}
+#glow{position:absolute;left:50%;top:210px;width:560px;height:560px;margin:-280px;border-radius:50%;background:radial-gradient(circle,rgba(255,214,140,.35),transparent 65%);opacity:0;transition:opacity 1s;z-index:0;pointer-events:none}
+#stage.bigl #glow{opacity:1}
+/* controls */
+#bar{position:absolute;left:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--red),var(--gold));width:0;transition:width .4s;z-index:12;box-shadow:0 0 12px var(--gold)}
+#ctl{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:12;display:flex;align-items:center;gap:4px;padding:6px;border-radius:999px;background:rgba(40,6,9,.7);border:1px solid rgba(240,198,116,.35);backdrop-filter:blur(10px);cursor:default;transition:opacity .4s}
+#ctl button{width:42px;height:42px;border:0;border-radius:50%;background:transparent;color:var(--ivory);cursor:pointer;display:grid;place-items:center;padding:0}
+#ctl svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#ctl button:hover,#ctl button:focus-visible{background:rgba(240,198,116,.18);color:var(--gold);outline:none}
+#cnt{min-width:110px;text-align:center;font:700 21px var(--sans);font-variant-numeric:tabular-nums}
+#cnt span{color:var(--gray);font-weight:400;font-size:17px}
+#stage.idle #ctl{opacity:0}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a0a18"/><stop offset=".6" stop-color="#b8531f"/><stop offset="1" stop-color="#f0c674"/></linearGradient>
+<linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a0a2e"/><stop offset=".65" stop-color="#c2362b"/><stop offset="1" stop-color="#ffb36b"/></linearGradient>
+<linearGradient id="g3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a1030"/><stop offset=".55" stop-color="#e0702b"/><stop offset="1" stop-color="#ffd98a"/></linearGradient>
+<g id="sc1"><rect width="1280" height="720" fill="url(#g1)"/><circle cx="930" cy="250" r="70" fill="#ffe3a0" opacity=".9"/>
+<path d="M0 520 Q200 440 400 500 T800 480 T1280 500 V720 H0Z" fill="#6b2a1a" opacity=".7"/>
+<path d="M330 600 L560 330 L640 290 L720 250 L760 290 L1000 600Z" fill="#3b0d14"/><path d="M640 290 L720 250 L760 290 L700 330Z" fill="#5a1620"/>
+<rect x="712" y="212" width="16" height="42" fill="#fff6e9"/><circle cx="720" cy="204" r="8" fill="#fff6e9"/>
+<path d="M470 560 L712 262" stroke="#f0c674" stroke-width="2" stroke-dasharray="6 6"/>
+<rect y="600" width="1280" height="120" fill="#2a0a0c"/><path d="M0 600 Q320 570 640 600 T1280 600 V720H0Z" fill="#46140f"/></g>
+<g id="sc2"><rect width="1280" height="720" fill="url(#g2)"/><circle cx="1000" cy="190" r="56" fill="#fff0c2" opacity=".85"/>
+<rect x="380" y="380" width="500" height="150" fill="#3a0f12"/><polygon points="360,380 630,290 900,380" fill="#2a0a0c"/>
+<rect x="420" y="410" width="40" height="70" fill="#f0c674" opacity=".7"/><rect x="520" y="410" width="40" height="70" fill="#f0c674" opacity=".7"/><rect x="700" y="410" width="40" height="70" fill="#f0c674" opacity=".7"/><rect x="800" y="410" width="40" height="70" fill="#f0c674" opacity=".7"/>
+<path d="M540 300 q20-50 50-24 q-18 8 -10 24Z M720 300 q-20-50 -50-24 q18 8 10 24Z" fill="#f0c674"/>
+<path d="M60 560 h240 l-30 40 h-180Z" fill="#1d0608"/><rect x="150" y="500" width="14" height="60" fill="#1d0608"/><rect x="190" y="520" width="60" height="40" fill="#1d0608"/>
+<rect y="530" width="1280" height="190" fill="#2b0a12"/><path d="M0 560h1280M0 600h1280M0 645h1280" stroke="#f0c674" stroke-opacity=".25" stroke-width="2" stroke-dasharray="40 24"/></g>
+<g id="sc3"><rect width="1280" height="720" fill="url(#g3)"/><circle cx="640" cy="330" r="80" fill="#fff3c4" opacity=".9"/>
+<path d="M0 440 L90 360 L170 420 L250 330 L330 430 L360 440Z" fill="#6a2418" opacity=".7"/>
+<path d="M200 480 L280 330 L330 340 L400 480Z M520 480 L580 300 L640 320 L720 480Z M820 480 L890 360 L950 380 L1040 480Z M1000 480 L1070 390 L1130 410 L1210 480Z" fill="#3a0f1c"/>
+<path d="M60 490 L110 400 L170 420 L240 490Z M420 490 L470 410 L540 430 L600 490Z" fill="#521628"/>
+<rect y="470" width="1280" height="250" fill="#2a0c1e"/><path d="M0 520h1280M0 575h1280M0 640h1280" stroke="#ffd98a" stroke-opacity=".3" stroke-width="2" stroke-dasharray="50 30"/>
+<path d="M540 580 h140 l-24 30 h-92Z" fill="#14040a"/><path d="M610 580 V510 L660 575Z" fill="#fff6e9" opacity=".9"/></g>
+</defs></svg>
+
+<div id="stage">
+  <div id="glow"></div>
+  <div id="logo"><div id="rot"></div></div>
+  <div id="bar"></div>
+  <div id="ctl">
+    <button id="prev" aria-label="Slide trước"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div id="cnt">1 <span>/ 1</span></div>
+    <button id="next" aria-label="Slide sau"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+    <button id="fs" aria-label="Toàn màn hình"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+  </div>
+</div>
+
+<script>
+/* Muốn dùng ảnh thật: lưu ảnh cạnh file này rồi điền tên file, ví dụ {1:"ba-den.jpg",2:"nha-rong.jpg",3:"ha-long.jpg"} */
+const PHOTOS={1:"",2:"",3:""};
+
+const D=[
+{t:"intro",h:"Núi Bà Đen – Bến Nhà Rồng – Vịnh Hạ Long",s:"Thuyết trình nhóm · Đại học Tôn Đức Thắng",sc:3,big:1},
+
+{t:"cover",sc:1,k:"Phần 1 · Tây Ninh",h:"Núi Bà Đen",s:"“Nóc nhà Nam Bộ” giữa đồng bằng"},
+{sc:1,k:"Núi Bà Đen",h:"Vị trí và đặc điểm tự nhiên",
+ l:["Thuộc tỉnh Tây Ninh, nằm giữa vùng đồng bằng Nam Bộ","Cao khoảng <b>986 m</b>, là ngọn núi cao nhất Nam Bộ","Đứng độc lập giữa đồng bằng, có rừng nguyên sinh, hang động, đá tảng","Khí hậu mát mẻ hơn vùng đồng bằng xung quanh"],
+ c:[["986 m","Cao nhất Nam Bộ"],["> 100 km","Cách TP. Hồ Chí Minh, hướng tây bắc"]]},
+{sc:1,k:"Núi Bà Đen",h:"Truyền thuyết và tín ngưỡng",
+ l:["Bà Đen – <b>Lý Thị Thiên Hương</b>: người con gái chung thủy, được thờ là Linh Sơn Thánh Mẫu","Ba cụm chùa trên núi: chùa Hang, chùa Trung, chùa Bà (Linh Sơn Tiên Thạch tự)","Lễ hội Vía Bà, chính hội khoảng ngày <b>5 tháng Giêng</b>, hàng chục vạn người hành hương","Phật giáo hòa quyện với tín ngưỡng thờ Mẫu của người Việt"],
+ c:[["Chùa Hang","Chùa Trung · Chùa Bà"],["5 tháng Giêng","Chính hội Vía Bà"]]},
+{sc:1,k:"Núi Bà Đen",h:"Giá trị lịch sử và du lịch hiện đại",
+ l:["Từng giữ vị trí chiến lược trong các cuộc kháng chiến","Cáp treo, đường bộ và đường leo núi lên đỉnh","Tượng Phật Bà Tây Bổ Đà Sơn cao <b>72 m</b> trên đỉnh","Đặc sản: bánh tráng phơi sương, muối tôm Tây Ninh"],
+ c:[["2020","Di tích quốc gia đặc biệt"],["2022","Khu du lịch quốc gia"],["72 m","Tượng Phật Bà bằng đồng"]]},
+
+{t:"cover",sc:2,k:"Phần 2 · TP. Hồ Chí Minh",h:"Bến Nhà Rồng",s:"Điểm khởi đầu hành trình tìm đường cứu nước"},
+{sc:2,k:"Bến Nhà Rồng",h:"Vị trí, lịch sử và kiến trúc",
+ l:["Số 1 Nguyễn Tất Thành, bên bờ sông Sài Gòn, khu vực Khánh Hội","Xây dựng khoảng <b>1862–1863</b>, là trụ sở Công ty vận tải đường biển Messageries Maritimes","Tên “Nhà Rồng” bắt nguồn từ hai con rồng trang trí trên mái","Kiến trúc phương Tây kết hợp trang trí phương Đông"],
+ c:[["1862–1863","Xây dựng thời Pháp thuộc"],["2 con rồng","Trên nóc nhà"]]},
+{sc:2,k:"Bến Nhà Rồng",h:"Sự kiện ngày 5/6/1911",
+ l:["Đất nước chịu ách thực dân, các phong trào yêu nước lần lượt thất bại","Nguyễn Tất Thành lấy tên <b>Văn Ba</b>, làm phụ bếp trên tàu Amiral Latouche-Tréville","Bắt đầu hành trình bôn ba hơn 30 năm qua nhiều châu lục","Ý nghĩa: điểm khởi đầu của hành trình tìm đường cứu nước"],
+ c:[["5/6/1911","Ngày Người xuống tàu ra đi"],["30+ năm","Bôn ba tìm đường giải phóng dân tộc"]]},
+{sc:2,k:"Bến Nhà Rồng",h:"Vai trò ngày nay",
+ l:["Bảo tàng Hồ Chí Minh – Chi nhánh TP. Hồ Chí Minh","Trưng bày hiện vật, hình ảnh, tư liệu về cuộc đời và sự nghiệp Chủ tịch Hồ Chí Minh","Địa chỉ giáo dục truyền thống cho người dân, học sinh, sinh viên, du khách","Chứng nhân lịch sử, biểu tượng của khát vọng độc lập, tự do"],
+ c:[["1979","Hoạt động như bảo tàng"],["1990","Xếp hạng di tích quốc gia"]]},
+
+{t:"cover",sc:3,k:"Phần 3 · Quảng Ninh",h:"Vịnh Hạ Long",s:"Kỳ quan thiên nhiên được thế giới công nhận"},
+{sc:3,k:"Vịnh Hạ Long",h:"Vị trí và quy mô",
+ l:["Thuộc tỉnh Quảng Ninh, vùng Đông Bắc Việt Nam","Gần 2.000 đảo đá vôi nhô lên giữa mặt nước biển xanh","Phần di sản thế giới rộng khoảng 434 km², có vùng đệm bao quanh","“Hạ Long” nghĩa là “rồng xuống”"],
+ c:[["1.969","Hòn đảo đá vôi"],["434 km²","Diện tích di sản thế giới"]]},
+{sc:3,k:"Vịnh Hạ Long",h:"Giá trị thiên nhiên và di sản",
+ l:["Địa hình karst hình thành qua hàng trăm triệu năm dưới tác động của nước và gió","Hang Sửng Sốt, động Thiên Cung, hang Đầu Gỗ; Hòn Gà Chọi, Hòn Đỉnh Hương","Hệ sinh thái đa dạng: rừng ngập mặn, rạn san hô, nhiều loài động thực vật"],
+ c:[["1994 · 2000","UNESCO: giá trị thẩm mỹ, địa chất – địa mạo"],["2012","Một trong bảy kỳ quan thiên nhiên mới"],["2023","Mở rộng: Vịnh Hạ Long – Quần đảo Cát Bà"]]},
+{sc:3,k:"Vịnh Hạ Long",h:"Truyền thuyết, du lịch và bảo tồn",
+ l:["Rồng mẹ và đàn rồng con nhả châu ngọc, hóa thành các đảo đá chắn giặc","Làng chài Cửa Vạn, Vung Viêng; dấu tích văn hóa Hạ Long thời tiền sử","Du thuyền, chèo kayak, tham quan hang động, ngủ đêm trên vịnh","Thách thức: ô nhiễm, lượng khách lớn, biến đổi khí hậu → du lịch bền vững, hạn chế rác thải nhựa"],
+ c:[["Bảo tồn","Tài sản của Việt Nam và của nhân loại"]]},
+
+{t:"intro",h:"Xin cảm ơn thầy cô và các bạn đã lắng nghe",s:"Thuyết trình nhóm · Đại học Tôn Đức Thắng",sc:3,big:1}
+];
+
+const $=id=>document.getElementById(id),stage=$("stage"),logo=$("logo"),rot=$("rot");
+/* Logo TDT 3D: xếp nhiều lớp SVG theo trục Z để tạo độ dày */
+const LG='<svg viewBox="0 0 330 190"><path fill="#1b75bc" d="M28 104H138L150 78H40ZM74 104H104L90 166H60Z"/><path fill="#1b75bc" d="M182 50H292L304 24H194ZM228 50H258L244 128H214Z"/><path fill="#e2452e" d="M120 64H196Q232 64 226 100Q218 150 176 150H96L104 124H170Q192 124 196 100Q198 92 184 92H112Z"/></svg>';
+for(let i=11;i>=0;i--){const w=document.createElement("div");w.innerHTML=LG;const s=w.firstChild;s.style.transform="translateZ(calc("+i+" * var(--dz) * -1))";if(i)s.classList.add("b");rot.appendChild(s)}
+
+const els=[];
+D.forEach((d,i)=>{
+  const e=document.createElement("section");e.className="slide "+(d.t||"");
+  const bg=(PHOTOS[d.sc]?'<div class="ph" style="background-image:url(\''+PHOTOS[d.sc]+'\')"></div>':"")+'<svg class="scene" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice"><use href="#sc'+d.sc+'"/></svg>';
+  let h=bg;
+  if(d.t==="intro")h+='<div class="rule"></div><h1>'+d.h+'</h1><div class="sub">'+d.s+'</div>';
+  else if(d.t==="cover")h+='<div class="k">'+d.k+'</div><h1>'+d.h+'</h1><div class="sub">'+d.s+'</div>';
+  else h+='<div class="k">'+d.k+'</div><h1>'+d.h+'</h1><div class="body"><ul>'+d.l.map((x,j)=>'<li style="--d:'+(.15+j*.12)+'s">'+x+'</li>').join("")+'</ul><div class="cards">'+d.c.map((x,j)=>'<div class="cd" style="--d:'+(.3+j*.14)+'s"><b>'+x[0]+'</b><span>'+x[1]+'</span></div>').join("")+'</div></div>';
+  e.innerHTML=h;stage.insertBefore(e,logo);els.push(e)});
+
+let cur=0;const N=D.length;
+function go(n){
+  cur=Math.max(0,Math.min(N-1,n));
+  els.forEach((e,i)=>{e.classList.toggle("on",i===cur);e.classList.toggle("past",i<cur)});
+  const big=!!D[cur].big;logo.classList.toggle("big",big);stage.classList.toggle("bigl",big);
+  $("cnt").innerHTML=(cur+1)+" <span>/ "+N+"</span>";
+  $("bar").style.width=((cur+1)/N*100)+"%";
+  if(history.replaceState)history.replaceState(null,"","#"+(cur+1));
+}
+const next=()=>go(cur+1),prev=()=>go(cur-1);
+$("next").onclick=e=>{e.stopPropagation();next()};
+$("prev").onclick=e=>{e.stopPropagation();prev()};
+$("fs").onclick=e=>{e.stopPropagation();document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen()};
+stage.addEventListener("click",e=>{if(!e.target.closest("#ctl"))next()});
+addEventListener("keydown",e=>{
+  if(["ArrowRight","PageDown"," ","Enter"].includes(e.key)){e.preventDefault();next()}
+  else if(["ArrowLeft","PageUp","Backspace"].includes(e.key)){e.preventDefault();prev()}
+  else if(e.key==="Home")go(0);else if(e.key==="End")go(N-1);
+  else if(e.key==="f"||e.key==="F")$("fs").click()});
+function fit(){document.documentElement.style.setProperty("--s",Math.min(innerWidth/1280,innerHeight/720))}
+addEventListener("resize",fit);fit();
+let it;const wake=()=>{stage.classList.remove("idle");clearTimeout(it);it=setTimeout(()=>stage.classList.add("idle"),2800)};
+addEventListener("mousemove",wake);wake();
+go((parseInt(location.hash.slice(1))||1)-1);
+</script>
+</body>
+</html>
